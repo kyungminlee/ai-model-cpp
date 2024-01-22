@@ -5,19 +5,19 @@ Save model from Python / Load model from C++
 ## Installation
 
 The following creates python venv:
-```
-$ ./configure.sh
+```console
+./configure.sh
 ```
 
 Install necessary requirements:
-```
-$ source venv/bin/activate
-$ pip install -r requirements.txt
+```console
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
 To build C++ examples:
-```
-$ cmake -B build
-$ cmake --build build
+```console
+cmake -B build
+cmake --build build
 ```
 
