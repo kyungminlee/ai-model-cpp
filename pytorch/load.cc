@@ -58,7 +58,7 @@ int main(int argc, char const * argv[]) {
   std::cout << "ok\n";
 
   std::vector<torch::jit::IValue> inputs;
-  inputs.push_back(torch::ones({1, 3, 32, 32}));
+  inputs.push_back(torch::ones({3, 32, 32}));
 
   at::Tensor output = module.forward(inputs).toTensor();
   std::cout << output << std::endl;

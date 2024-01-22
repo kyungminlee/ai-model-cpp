@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+import torchsummary
 
 # Define model
 class TheModelClass(nn.Module):
@@ -23,10 +24,13 @@ class TheModelClass(nn.Module):
         x = self.fc3(x)
         return x
 
-torch.manual_seed(0)
+# torch.manual_seed(0)
 
 # Initialize model
 model = TheModelClass()
+for param in model.parameters():
+    param.data = nn.parameter.Parameter(torch.ones_like(param) * 0.1)
+    print(param.shape)
 
 # Initialize optimizer
 optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
@@ -42,8 +46,8 @@ for var_name in optimizer.state_dict():
     print(var_name, "\t", optimizer.state_dict()[var_name])
 
 # torch.save(model, 'foo.pkl')
-    
-x = torch.ones(1, 3, 32, 32)
+
+x = torch.ones(3, 32, 32)
 # print('x =', x)
 print('model(x) =', model(x))
 
@@ -52,3 +56,5 @@ print('traced_script_module(x) =', traced_script_module(x))
 # print('traced_script_module =', traced_script_module)
 
 traced_script_module.save('model.pt')
+
+torchsummary.summary(model, input_size=(3,32,32))
